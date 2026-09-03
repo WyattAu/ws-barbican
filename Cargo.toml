@@ -12,9 +12,9 @@ exclude = ["/target"]
 readme = "README.md"
 
 [dependencies]
-ws-kit = { path = "../ws-kit" }
-barbican = { path = "../barbican" }
-tokenkit = { path = "../tokenkit" }
+ws-kit = { version = "0.1", path = "../ws-kit" }
+barbican = { version = "0.1", path = "../barbican" }
+tokenkit = { version = "0.1", path = "../tokenkit" }
 axum = { version = "0.8", features = ["ws"] }
 tokio = { version = "1", features = ["rt", "sync"] }
 serde = { version = "1", features = ["derive"] }
