@@ -1,0 +1,33 @@
+[package]
+name = "ws-barbican"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+description = "WebSocket authentication bridge — barbican + ws-kit + tokenkit integration for Axum"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/WyattAu/ws-barbican"
+keywords = ["websocket", "auth", "barbican", "jwt"]
+categories = ["web-programming"]
+exclude = ["/target"]
+readme = "README.md"
+
+[dependencies]
+ws-kit = { path = "../ws-kit" }
+barbican = { path = "../barbican" }
+tokenkit = { path = "../tokenkit" }
+axum = { version = "0.8", features = ["ws"] }
+tokio = { version = "1", features = ["rt", "sync"] }
+serde = { version = "1", features = ["derive"] }
+thiserror = { version = "2", default-features = false }
+tracing = "0.1"
+http = "1"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }
+proptest = "1"
+axum = { version = "0.8", features = ["ws"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+[features]
+default = ["std"]
+std = ["thiserror/std"]
