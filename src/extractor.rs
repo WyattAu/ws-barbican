@@ -157,14 +157,20 @@ mod tests {
             "Bearer header_tok".parse().unwrap(),
         );
         let parts = parts_with(headers, "/ws?token=query_tok");
-        assert_eq!(ex.extract(&parts, "token=query_tok"), Some("header_tok".into()));
+        assert_eq!(
+            ex.extract(&parts, "token=query_tok"),
+            Some("header_tok".into())
+        );
     }
 
     #[test]
     fn extract_query_token() {
         let ex = BarbicanTokenExtractor::default();
         let parts = parts_with(HeaderMap::new(), "/ws?token=query_tok");
-        assert_eq!(ex.extract(&parts, "token=query_tok"), Some("query_tok".into()));
+        assert_eq!(
+            ex.extract(&parts, "token=query_tok"),
+            Some("query_tok".into())
+        );
     }
 
     #[test]
@@ -206,10 +212,7 @@ mod tests {
     fn extract_order_header_over_query_over_cookie() {
         let ex = BarbicanTokenExtractor::default();
         let mut headers = HeaderMap::new();
-        headers.insert(
-            http::header::AUTHORIZATION,
-            "Bearer hdr".parse().unwrap(),
-        );
+        headers.insert(http::header::AUTHORIZATION, "Bearer hdr".parse().unwrap());
         headers.insert(http::header::COOKIE, "session=ck".parse().unwrap());
         let parts = parts_with(headers, "/ws?token=q");
         // header wins
@@ -253,7 +256,10 @@ mod tests {
             ex.extract_from_parts(None, Some("session=ck"), ""),
             Some("ck".into())
         );
-        assert_eq!(ex.extract_from_parts(None, None, "token=q"), Some("q".into()));
+        assert_eq!(
+            ex.extract_from_parts(None, None, "token=q"),
+            Some("q".into())
+        );
     }
 
     #[test]

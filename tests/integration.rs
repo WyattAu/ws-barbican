@@ -62,7 +62,10 @@ fn extractor_header() {
         "Bearer header_token".parse().unwrap(),
     );
     let parts = parts_with(headers, "/ws?token=query_token");
-    assert_eq!(ex.extract(&parts, "token=query_token"), Some("header_token".to_string()));
+    assert_eq!(
+        ex.extract(&parts, "token=query_token"),
+        Some("header_token".to_string())
+    );
 }
 
 #[test]
@@ -76,7 +79,10 @@ fn extractor_query_token() {
 fn extractor_query_access_token() {
     let ex = BarbicanTokenExtractor::default();
     let parts = parts_with(HeaderMap::new(), "/ws?access_token=at456");
-    assert_eq!(ex.extract(&parts, "access_token=at456"), Some("at456".to_string()));
+    assert_eq!(
+        ex.extract(&parts, "access_token=at456"),
+        Some("at456".to_string())
+    );
 }
 
 #[test]
@@ -141,9 +147,15 @@ async fn validator_multi_token_jwt_and_api_key() {
     });
     // JWT succeeds
     let token = svc.encode(&valid_claims()).unwrap();
-    assert_eq!(mv.validate(&token).await.unwrap().sub.as_deref(), Some("user-1"));
+    assert_eq!(
+        mv.validate(&token).await.unwrap().sub.as_deref(),
+        Some("user-1")
+    );
     // API key succeeds
-    assert_eq!(mv.validate("api-123").await.unwrap().sub.as_deref(), Some("api-user"));
+    assert_eq!(
+        mv.validate("api-123").await.unwrap().sub.as_deref(),
+        Some("api-user")
+    );
     // Both fail
     assert!(mv.validate("bad").await.is_err());
 }
@@ -191,7 +203,10 @@ async fn handler_401_before_upgrade_invalid_token() {
     let (mut parts, _) = req.into_parts();
     let res = AuthenticatedWs::<StandardClaims>::from_request_parts(&mut parts, &state).await;
     assert!(res.is_err());
-    assert_eq!(res.unwrap_err().into_response().status(), StatusCode::UNAUTHORIZED);
+    assert_eq!(
+        res.unwrap_err().into_response().status(),
+        StatusCode::UNAUTHORIZED
+    );
 }
 
 #[tokio::test]
@@ -215,7 +230,8 @@ async fn handler_optional_never_401() {
     let state = AppState { jwt: svc };
     let req = Request::builder().uri("/ws").body(()).unwrap();
     let (mut parts, _) = req.into_parts();
-    let res = OptionalAuthenticatedWs::<StandardClaims>::from_request_parts(&mut parts, &state).await;
+    let res =
+        OptionalAuthenticatedWs::<StandardClaims>::from_request_parts(&mut parts, &state).await;
     assert!(res.is_ok());
     assert!(res.unwrap().0.is_none());
 }

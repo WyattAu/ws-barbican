@@ -139,8 +139,6 @@ where
         .into_response()
 }
 
-
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -282,7 +280,9 @@ mod tests {
     async fn authenticated_ws_expired_401() {
         let svc = service();
         let token = expired_token(&svc);
-        let state = AppState { jwt: Arc::clone(&svc) };
+        let state = AppState {
+            jwt: Arc::clone(&svc),
+        };
 
         let req = Request::builder()
             .uri("/ws")
@@ -327,9 +327,9 @@ mod tests {
             .unwrap();
         let (mut parts, _) = req.into_parts();
 
-        let res =
-            OptionalAuthenticatedWs::<StandardClaims>::from_request_parts(&mut parts, &state).await
-                .unwrap();
+        let res = OptionalAuthenticatedWs::<StandardClaims>::from_request_parts(&mut parts, &state)
+            .await
+            .unwrap();
         assert!(res.0.is_some());
     }
 
