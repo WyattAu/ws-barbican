@@ -31,3 +31,7 @@ chrono = { version = "0.4", features = ["serde"] }
 [features]
 default = ["std"]
 std = ["thiserror/std"]
+
+[lints.clippy]
+unwrap_used = "warn"
+expect_used = "warn"
