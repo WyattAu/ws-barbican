@@ -15,7 +15,14 @@ use ws_kit::extractor::WsAuthError;
 /// to be compatible. Otherwise this crate defines the canonical trait.
 pub trait WsAuthValidator: Send + Sync {
     /// Validate `token` and return decoded [`StandardClaims`].
-    async fn validate(&self, token: &str) -> Result<StandardClaims, WsAuthError>;
+    ///
+    /// Declared with RPITIT (rather than `async fn`) so implementors get
+    /// explicit control over auto-trait bounds, as recommended by the
+    /// `async_fn_in_trait` lint.
+    fn validate(
+        &self,
+        token: &str,
+    ) -> impl std::future::Future<Output = Result<StandardClaims, WsAuthError>> + Send;
 }
 
 /// Validates JWTs using a shared [`JwtService`].
@@ -172,6 +179,8 @@ impl WsAuthValidator for MultiTokenValidator {
 }
 
 #[cfg(test)]
+// Test code: unwrap/unwrap_err are the idiomatic way to assert outcomes.
+#[allow(clippy::unwrap_used)]
 mod tests {
     use super::*;
     use chrono::{Duration, Utc};

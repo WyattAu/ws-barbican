@@ -130,6 +130,8 @@ impl BarbicanTokenExtractor {
 }
 
 #[cfg(test)]
+// Test code: unwrap/unwrap_err are the idiomatic way to assert outcomes.
+#[allow(clippy::unwrap_used)]
 mod tests {
     use super::*;
     use http::{HeaderMap, Request};

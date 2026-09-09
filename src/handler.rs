@@ -140,6 +140,8 @@ where
 }
 
 #[cfg(test)]
+// Test code: unwrap/unwrap_err are the idiomatic way to assert outcomes.
+#[allow(clippy::unwrap_used)]
 mod tests {
     use super::*;
     use axum::http::{Request, StatusCode};
@@ -393,7 +395,7 @@ mod tests {
             .header(http::header::SEC_WEBSOCKET_VERSION, "13")
             .body(())
             .unwrap();
-        let (mut parts2, body) = req2.into_parts();
+        let (mut parts2, _body) = req2.into_parts();
         // Use a dummy state () for WebSocketUpgrade extraction
         let ws = WebSocketUpgrade::from_request_parts(&mut parts2, &()).await;
         // In unit test without proper axum routing, extraction may fail due to missing extension;
@@ -404,13 +406,6 @@ mod tests {
         if let Ok(ws) = ws {
             let resp = barbican_ws_handler(auth, ws, |_socket| async move {}).await;
             assert_eq!(resp.status(), StatusCode::SWITCHING_PROTOCOLS);
-        } else {
-            // At least verify the 401 path for the helper
-            let err_auth: Result<AuthenticatedWs<StandardClaims>, AuthRejection> =
-                Err(AuthRejection::MissingCredentials);
-            // Need a valid ws for this branch; create a minimal one via try
-            // Skip detailed ws check if extractor unavailable in test context.
         }
-        let _ = body;
     }
 }

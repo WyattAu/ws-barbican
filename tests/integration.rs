@@ -1,3 +1,6 @@
+// Test code: unwrap is the idiomatic way to assert assumptions.
+#![allow(clippy::unwrap_used)]
+
 use std::sync::Arc;
 
 use axum::extract::FromRequestParts;
