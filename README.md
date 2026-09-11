@@ -1,5 +1,9 @@
 # ws-barbican
 
+[![docs.rs](https://docs.rs/ws-barbican/badge.svg)](https://docs.rs/ws-barbican)
+[![crates.io](https://img.shields.io/crates/v/ws-barbican.svg)](https://crates.io/crates/ws-barbican)
+[![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)](LICENSE)
+
 WebSocket authentication bridge — `barbican` + `ws-kit` + `tokenkit` integration for Axum.
 
 ## Features

@@ -18,8 +18,6 @@ tokenkit = { version = "0.1" }
 axum = { version = "0.8", features = ["ws"] }
 tokio = { version = "1", features = ["rt", "sync"] }
 serde = { version = "1", features = ["derive"] }
-thiserror = { version = "2", default-features = false }
-tracing = "0.1"
 http = "1"
 
 [dev-dependencies]
@@ -30,7 +28,7 @@ chrono = { version = "0.4", features = ["serde"] }
 
 [features]
 default = ["std"]
-std = ["thiserror/std"]
+std = []
 
 [lints.clippy]
 unwrap_used = "warn"

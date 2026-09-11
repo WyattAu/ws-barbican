@@ -3,7 +3,7 @@
 
 //! # ws-barbican
 //!
-//! WebSocket authentication bridge combining [`ws-kit`], [`barbican`], and [`tokenkit`].
+//! WebSocket authentication bridge combining `ws-kit`, `barbican`, and `tokenkit`.
 //!
 //! - [`validator::BarbicanValidator`] — validates JWTs via [`tokenkit::service::JwtService`].
 //! - [`validator::MultiTokenValidator`] — validates either JWT or API-key tokens.
@@ -25,7 +25,8 @@
 //!     ws: WebSocketUpgrade,
 //! ) -> impl IntoResponse {
 //!     ws.on_upgrade(move |_socket| async move {
-//!         tracing::info!(sub = ?claims.sub, "ws connected");
+//!         // `claims` is the validated `StandardClaims`; handle the socket here.
+//!         let _ = claims.sub.clone();
 //!     })
 //! }
 //!
