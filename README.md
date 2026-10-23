@@ -1,4 +1,5 @@
 # ws-barbican
+[![Estate integration](https://github.com/WyattAu/estate-integration/actions/workflows/ci.yml/badge.svg)](https://github.com/WyattAu/estate-integration/actions/workflows/ci.yml)
 
 [![docs.rs](https://docs.rs/ws-barbican/badge.svg)](https://docs.rs/ws-barbican)
 [![crates.io](https://img.shields.io/crates/v/ws-barbican.svg)](https://crates.io/crates/ws-barbican)
