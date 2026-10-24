@@ -1,9 +1,9 @@
 [package]
 name = "ws-barbican"
-version = "0.1.4"
+version = "0.1.5"
 edition = "2021"
 rust-version = "1.85"
-description = "WebSocket authentication bridge: barbican + ws-kit + tokenkit integration for Axum"
+description = "Barbican wrapper for ws-kit: JWT auth via header/query/cookie"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/WyattAu/ws-barbican"
 keywords = ["websocket", "auth", "barbican", "jwt"]
