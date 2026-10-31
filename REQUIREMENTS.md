@@ -1,10 +1,10 @@
-# Requirements — ws-barbican
+# Requirements: ws-barbican
 
 Numbered, testable requirements. Every requirement maps to at least one named
 test; every security-relevant test cites at least one requirement. Threat
 IDs reference `THREAT-MODEL.md`.
 
-Scope note: `ws-barbican` is the WebSocket authentication bridge —
+Scope note: `ws-barbican` is the WebSocket authentication bridge -
 barbican + ws-kit + tokenkit integration for Axum. It extracts tokens
 (header → query → cookie), validates them (JWT claims, API keys with
 revocation), and exposes `AuthenticatedWs` / `OptionalAuthenticatedWs`

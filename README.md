@@ -5,15 +5,15 @@
 [![crates.io](https://img.shields.io/crates/v/ws-barbican.svg)](https://crates.io/crates/ws-barbican)
 [![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)](LICENSE)
 
-WebSocket authentication bridge — `barbican` + `ws-kit` + `tokenkit` integration for Axum.
+WebSocket authentication bridge; `barbican` + `ws-kit` + `tokenkit` integration for Axum.
 
 ## Features
 
-- `BarbicanValidator` — validates JWTs via `tokenkit::JwtService`
-- `MultiTokenValidator` — accepts either JWT or API-key tokens
-- `BarbicanTokenExtractor` — extracts bearer tokens from `Authorization: Bearer`, query `?token=` / `?access_token=`, or `Cookie: session=`
-- `AuthenticatedWs<C>` — Axum extractor that authenticates WebSocket upgrades before `on_upgrade` (401 before upgrade)
-- `build_ws_auth_cookie` — delegates to `tokenkit::build_auth_cookie`
+- `BarbicanValidator`; validates JWTs via `tokenkit::JwtService`
+- `MultiTokenValidator`; accepts either JWT or API-key tokens
+- `BarbicanTokenExtractor`; extracts bearer tokens from `Authorization: Bearer`, query `?token=` / `?access_token=`, or `Cookie: session=`
+- `AuthenticatedWs<C>`; Axum extractor that authenticates WebSocket upgrades before `on_upgrade` (401 before upgrade)
+- `build_ws_auth_cookie`; delegates to `tokenkit::build_auth_cookie`
 
 ## Quick start
 
